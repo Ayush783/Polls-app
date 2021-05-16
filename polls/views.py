@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
+from .models import Question
 # Create your views here.
 def index(request):
-    return HttpResponse("Index page")
+    polls_list = Question.objects.all().order_by('pub_date')
+    response = ', '.join([q.question_text for q in polls_list])
+    return HttpResponse(response)
 
 def details(request, question_id):
     return HttpResponse("details page")
