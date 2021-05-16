@@ -5,7 +5,7 @@ from .models import Question
 def index(request):
     polls_list = Question.objects.all().order_by('pub_date')
     response = ', '.join([q.question_text for q in polls_list])
-    return HttpResponse(response)
+    return render(request,'polls/index.html',{'polls_list':polls_list})
 
 def details(request, question_id):
     return HttpResponse("details page")
