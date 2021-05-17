@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse 
 from .models import Question
 # Create your views here.
@@ -8,7 +8,8 @@ def index(request):
     return render(request,'polls/index.html',{'polls_list':polls_list})
 
 def details(request, question_id):
-    return HttpResponse("details page")
+    question = get_object_or_404(Question,pk=question_id)
+    return render(request,'polls/details.html',{'question':question})
 
 def results(request, question_id):
     return HttpResponse("results page")
