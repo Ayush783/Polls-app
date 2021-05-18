@@ -27,6 +27,9 @@
             border-radius: 4px;
             box-shadow: 2px 2px black;
         }
+        .btn:hover{
+            box-shadow: 1px 1px black;
+        }
     </style>
 </head>
 
@@ -59,7 +62,7 @@
         {%for question in polls_list%}
         <div class="container-sm mb-4 question">
             <p class="questionText">{{forloop.counter}}. {{question.question_text}}</p>
-            <button type="button" class="btn btn-dark btn-lg" style="margin-right: 10px;"><a class="link" href="{%url 'polls:details' question.id%}">View Poll</a></button>
+            <a class="link" href="{%url 'polls:details' question.id%}"><button type="button" class="btn btn-dark btn-lg" style="margin-right: 10px;">View Poll</button></a>
         </div>
         {%endfor%}
         {%else%}
