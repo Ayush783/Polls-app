@@ -30,5 +30,5 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 def recent(request):
-    polls_list = Question.objects.all().order_by('pub_date')[:5]
+    polls_list = Question.objects.all().order_by('-pub_date')[:5]
     return render(request,'polls/recent-polls.html',{'polls_list':polls_list})
