@@ -10,30 +10,33 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>Recent Polls</title>
+    <title>Create poll</title>
     <style>
         .questionText {
             font-family: 'Sen';
             font-size: 24px;
             font-weight: 600;
         }
-        .link{
+
+        .link {
             color: white;
             text-decoration: none;
         }
-        .question{
+
+        .question {
             border: 2px solid black;
             padding: 1em;
             border-radius: 4px;
             box-shadow: 2px 2px black;
         }
-        .btn:hover{
+
+        .btn:hover {
             box-shadow: 1px 1px black;
         }
     </style>
 </head>
 
-<body>
+<body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Polls App</a>
@@ -48,31 +51,46 @@
                         <a class="nav-link" href="/polls">All Polls</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="">Recent Polls</a>
+                        <a class="nav-link" href="/polls/recent">Recent Polls</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/polls/create">Create Poll</a>
+                        <a class="nav-link active" aria-current="page" href="/polls/create">Create Poll</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container mt-4" style="width: 32em;">
-        {%if polls_list%}
-        {%for question in polls_list%}
-        <div class="container-sm mb-4 question">
-            <p class="questionText">{{forloop.counter}}. {{question.question_text}}</p>
-            <a class="link" href="{%url 'polls:details' question.id%}"><button type="button" class="btn btn-dark btn-lg" style="margin-right: 10px;">View Poll</button></a>
-        </div>
-        {%endfor%}
-        {%else%}
-        <p style="align-self: center;">No polls available</p>
-        {%endif%}
-    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
+    <div class="container text-start my-4" style="width: 48em;">
+        <form action="" method="POST">
+            {%csrf_token%}
+            <div class="my-2">
+                <label for="questionTextId" class="form-label">Enter question text</label>
+                <input type="text" class="form-control" id="questionTextId" name="question_text" required>
+            </div>
+            <label for="choices" class="form-label">Enter Choices</label>
+            <div class="row g-3" style="margin-bottom: 1em;" id="choices">
+                
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Choice 1" aria-label="Choice 1" name="choice1" required>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Choice 2" aria-label="Choice 2" name="choice2" required>
+                </div><div class="col">
+                    <input type="text" class="form-control" placeholder="Choice 3" aria-label="Choice 3" name="choice3" required>
+                </div><div class="col">
+                    <input type="text" class="form-control" placeholder="Choice 4" aria-label="Choice 4" name="choice4" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Create</button>
+        </form>
+    </div>
+
+
 </body>
 
 </html>

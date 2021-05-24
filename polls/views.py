@@ -32,3 +32,6 @@ def vote(request, question_id):
 def recent(request):
     polls_list = Question.objects.all().order_by('-pub_date')[:5]
     return render(request,'polls/recent-polls.html',{'polls_list':polls_list})
+
+def create(request):
+    return render(request,'polls/create-poll.html')
