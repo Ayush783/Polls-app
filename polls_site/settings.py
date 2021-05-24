@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9-se=6rpu%k(1-yg8pc#x6fyumstc*tqz%cylx+a(sq_0(+=&g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['polls_site.herokuapp.com','localhost','127.0.0.1']
 
 
 # Application definition
